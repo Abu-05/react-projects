@@ -1,9 +1,9 @@
-import TimerRef from "./TimeRef";
+import TimerRef from "./practice/TimeRef";
 import Navbar from "./pages/Navbar";
 import ChangeUser from "./ChangeUser";
-import CounterReducer from "./CounterReducer";
-import TodoReducerApp from "./TodoReducerApp";
-import UsernameSaver from "./UsernameSaver";
+import CounterReducer from "./practice/CounterReducer";
+import TodoReducerApp from "./practice/TodoReducerApp";
+import UsernameSaver from "./practice/UsernameSaver";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import UserContext from "../UserContext";
+import UserContext from "../practice/UserContext";
 
 function Navbar() {
   const { user } = useContext(UserContext);

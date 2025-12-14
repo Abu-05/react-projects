@@ -1,16 +1,25 @@
 import { useState } from "react";
-function TodoInput({dispatch}){
-    const [text,setText] = useState("");
-    function addTodo(){
-        if(text.trim()==="") return;
-        dispatch({type: "ADD" , playload : text});
-        setText("");
-    }
-    return(
-        <div>
-            <input type="text" value={text} onChange={(e)=>setText(e.target.value)} placeholder="Add new task" />
-            <button onClick={addTodo}>Add task</button>
-        </div>
-    );
+import styles from "../styles/todo.module.css";
+
+function TodoInput({ dispatch }) {
+  const [text, setText] = useState("");
+
+  function addTodo() {
+    if (text.trim() === "") return;
+    dispatch({ type: "ADD", payload: text });
+    setText("");
+  }
+
+  return (
+    <div className={styles.inputBox}>
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Add a task"
+      />
+      <button onClick={addTodo}>Add</button>
+    </div>
+  );
 }
+
 export default TodoInput;

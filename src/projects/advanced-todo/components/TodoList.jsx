@@ -1,16 +1,18 @@
 import TodoItem from "./TodoItem";
+import styles from "../styles/todo.module.css";
 
-function TodoList({todos,dispatch}){
-    return (
-        <div>
-            <ul>
-                {todos.map(todo=>(<TodoItem
+function TodoList({ todos, dispatch }) {
+  return (
+    <ul className={styles.list}>
+      {todos.map(todo => (
+        <TodoItem
           key={todo.id}
           todo={todo}
           dispatch={dispatch}
-        />))}
-            </ul>
-        </div>
-    );
+        />
+      ))}
+    </ul>
+  );
 }
+
 export default TodoList;

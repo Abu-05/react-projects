@@ -84,6 +84,26 @@ I believe in **consistency, fundamentals, and practical learning**.
 ---
 
 ## 🔗 Connect
+## Completed Projects
+## ✅ Advanced Todo App
+
+A fully functional Todo application built with modern React patterns.
+
+### Features
+- Add, edit, delete todos
+- Toggle completed state
+- Filter todos (All / Active / Completed)
+- Persist data using localStorage
+- Reducer-based state management
+- Component-level styling using CSS Modules
+
+### Concepts Used
+- useReducer
+- useState
+- useEffect
+- Derived state
+- CSS Modules
+- Clean component architecture
 
 - GitHub: https://github.com/Abu-05/react-projects/
 

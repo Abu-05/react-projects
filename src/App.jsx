@@ -1,10 +1,11 @@
-import TodoApp from "./projects/advanced-todo";
+import AuthApp from "./projects/auth-app";
+import { AuthProvider } from "./projects/auth-app/context/AuthContext";
 
 function App() {
   return (
-    <div>
-      <TodoApp />
-    </div>
+    <AuthProvider>
+      <AuthApp />
+    </AuthProvider>
   );
 }
 

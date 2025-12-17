@@ -34,6 +34,7 @@ return (
 
     <form onSubmit={handleLogin}>
       <input
+      style={{ width: "100%", boxSizing: "border-box" }}
         type="email"
         placeholder="Email"
         value={email}
@@ -43,6 +44,7 @@ return (
       <br /><br />
 
       <input
+      style={{ width: "100%", boxSizing: "border-box" }}
         type="password"
         placeholder="Password"
         value={password}

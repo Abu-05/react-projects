@@ -1,12 +1,7 @@
-import AuthApp from "./projects/auth-app";
-import { AuthProvider } from "./projects/auth-app/context/AuthContext";
+import WeatherApp from "./projects/weather-app/WeatherApp";
 
 function App() {
-  return (
-    <AuthProvider>
-      <AuthApp />
-    </AuthProvider>
-  );
+  return <WeatherApp />;
 }
 
 export default App;

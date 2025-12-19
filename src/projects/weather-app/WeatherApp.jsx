@@ -5,21 +5,49 @@ import WeatherCard from "./components/WeatherCard";
 function WeatherApp() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  function handleSearch() {
-    if (!city) {
-      setError("Please enter a city");
+  async function handleSearch() {
+    if (!city.trim()) {
+      setError("Please enter a city name");
       return;
     }
 
-    setWeather({
-      city: city,
-      temp: 28,
-      condition: "Sunny",
-      humidity: 60,
-    });
+    setLoading(true);
     setError("");
+    setWeather(null);
+
+    try {
+      // 1️⃣ Get latitude & longitude from city
+      const geoRes = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}`
+      );
+      const geoData = await geoRes.json();
+
+      if (!geoData.results || geoData.results.length === 0) {
+        throw new Error("City not found");
+      }
+
+      const { latitude, longitude, name } = geoData.results[0];
+
+      // 2️⃣ Get weather using coordinates
+      const weatherRes = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+      );
+      const weatherData = await weatherRes.json();
+
+      setWeather({
+        city: name,
+        temp: weatherData.current_weather.temperature,
+        wind: weatherData.current_weather.windspeed,
+        condition: weatherData.current_weather.weathercode,
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -27,13 +55,15 @@ function WeatherApp() {
       <h2>Weather App</h2>
 
       <SearchBox
-        city={city}
-        setCity={setCity}
-        onSearch={handleSearch}
-      />
+  city={city}
+  setCity={setCity}
+  onSearch={handleSearch}
+  loading={loading}
+/>
 
+
+      {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
-
       {weather && <WeatherCard weather={weather} />}
     </div>
   );

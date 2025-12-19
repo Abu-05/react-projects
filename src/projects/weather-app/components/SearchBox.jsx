@@ -1,13 +1,17 @@
-function SearchBox({ city, setCity, onSearch }) {
+function SearchBox({ city, setCity, onSearch, loading }) {
   return (
     <div>
       <input
-        type="text"
-        placeholder="Enter city"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button onClick={onSearch}>Search</button>
+  type="text"
+  placeholder="Enter city"
+  value={city}
+  onChange={(e) => setCity(e.target.value)}
+  onKeyDown={(e) => e.key === "Enter" && onSearch()}
+/>
+
+      <button onClick={onSearch} disabled={loading}>
+        {loading ? "Searching..." : "Search"}
+      </button>
     </div>
   );
 }

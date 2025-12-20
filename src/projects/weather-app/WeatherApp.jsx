@@ -7,6 +7,44 @@ function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  function handleLocationSearch() {
+  if (!navigator.geolocation) {
+    setError("Geolocation is not supported by your browser");
+    return;
+  }
+
+  setLoading(true);
+  setError("");
+  setWeather(null);
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      try {
+        const { latitude, longitude } = position.coords;
+
+        const res = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+        );
+        const data = await res.json();
+
+        setWeather({
+          city: "Your Location",
+          temp: data.current_weather.temperature,
+          wind: data.current_weather.windspeed,
+          condition: data.current_weather.weathercode,
+        });
+      } catch (err) {
+        setError("Failed to fetch weather for your location");
+      } finally {
+        setLoading(false);
+      }
+    },
+    () => {
+      setError("Location permission denied");
+      setLoading(false);
+    }
+  );
+}
 
   async function handleSearch() {
     if (!city.trim()) {
@@ -58,6 +96,7 @@ function WeatherApp() {
   city={city}
   setCity={setCity}
   onSearch={handleSearch}
+  onLocationSearch={handleLocationSearch}
   loading={loading}
 />
 

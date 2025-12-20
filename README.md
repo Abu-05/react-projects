@@ -140,6 +140,7 @@ A weather application built using React and the Open-Meteo API.
 
 ### Features
 - Search weather by city name
+- Or you can just click "My location" button to know your area weather details
 - Real-time weather data
 - No API key required
 - Loading and error handling

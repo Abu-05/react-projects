@@ -1,7 +1,7 @@
-import WeatherApp from "./projects/weather-app/WeatherApp";
+import TaskManager from "./projects/task-manager/TaskManager";
 
 function App() {
-  return <WeatherApp />;
+  return <TaskManager />;
 }
 
 export default App;

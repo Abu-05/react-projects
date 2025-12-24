@@ -153,9 +153,17 @@ A weather application built using React and the Open-Meteo API.
 - Splitting logic into reusable components
 
 ### Tech Stack
+
 - React
 - JavaScript (ES6+)
 - Open-Meteo API
+  
+- ## Task Manager (React)
+  
+- Built a task management dashboard with workflow states (TODO → IN_PROGRESS → DONE)
+- Implemented filtering, derived statistics, and localStorage persistence
+- Designed clean component structure and full-screen dark UI
+- Focused on real-world state management patterns
 
 
 ⭐ This repository reflects my **learning progress and consistency**.

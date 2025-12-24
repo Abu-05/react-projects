@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./TaskManager.module.css";
 import TaskStats from "./components/TaskStats";
 import TaskFilter from "./components/TaskFilter";
@@ -38,6 +38,9 @@ function TaskManager() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("LOW");
+  useEffect(() => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}, [tasks]);
 
   function toggleStatus(id) {
   setTasks((prev) =>
@@ -80,7 +83,8 @@ function TaskManager() {
       : tasks.filter((task) => task.status === filter);
 
   return (
-    <div className={styles.app}>
+    <div className={styles.page}>
+  <div className={styles.container}>
       <h1 className={styles.title}>Task Manager</h1>
 
       <TaskStats
@@ -130,6 +134,7 @@ function TaskManager() {
         ))}
       </div>
     </div>
+</div>
   );
 }
 
